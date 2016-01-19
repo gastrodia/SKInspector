@@ -23,15 +23,31 @@ Inspect3js.overloadPostProcess	= function( originalFunction, postProcessFct ) {
 Inspect3js._classNames = [];
 
 Inspect3js.getClassName		= function( object ) {
+	// chrome.runtime.sendMessage({
+	// 	type:'log',
+	// 	pos:'getClassName'
+	// });
+
+
+	// if(object.getClassName && object.getClassName()){
+	//
+	// 	return object.getClassName();
+	// }
+
 	for( var j in Inspect3js._classNames ) {
 		if( object instanceof THREE[ Inspect3js._classNames[ j ] ] ) {
-			var result = Inspect3js._classNames[j]
+			var result = Inspect3js._classNames[j];
+			if(result == 'Mesh'){
+				//alert(object.getClassName)
+				if(object.getClassName && object.getClassName()){
+					return object.getClassName();
+				}
+			}
 			return result;
 		}
 	}
 
-	debugger; // dafuc?
-}	
+}
 /**
  * extract all constructors functions name from three.js
  */
