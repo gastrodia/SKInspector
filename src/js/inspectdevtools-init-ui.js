@@ -6,7 +6,7 @@ var InspectDevTools	= InspectDevTools	|| {}
 InspectDevTools.initRightSideBar	= function(){
 	// empty treeViewContainer
 	var domElement	= document.querySelector( '#rightSidebar' )
-	while( domElement.firstChild ){		
+	while( domElement.firstChild ){
 		domElement.removeChild( domElement.firstChild );
 	}
 
@@ -26,7 +26,7 @@ InspectDevTools.initRightSideBar	= function(){
 	object3dTab.add( new PanelObject3D() )
 	object3dTab.add( new PanelNoObject3D() )
 	object3dTab.add( new PanelObject3DActions() )
-	
+
 	//////////////////////////////////////////////////////////////////////////////////
 	//		geometryTab
 	//////////////////////////////////////////////////////////////////////////////////
@@ -41,7 +41,7 @@ InspectDevTools.initRightSideBar	= function(){
 	var materialTab	= new UI.TabsHelper.createTab()
 	tabContainer.addTab('MATERIAL', materialTab)
 	materialTab.add( new PanelNoMaterial() )
-	materialTab.add( new PanelMaterial(-1) )	
+	materialTab.add( new PanelMaterial(-1) )
 }
 
 /**
@@ -53,21 +53,31 @@ InspectDevTools.initLeftSideBar = function(){
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Comments
 	//////////////////////////////////////////////////////////////////////////////////
-	
+
 	// empty treeViewContainer
-	while( treeViewContainer.firstChild ){		
+	while( treeViewContainer.firstChild ){
 		treeViewContainer.removeChild( treeViewContainer.firstChild );
 	}
-	
+
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Comments
 	//////////////////////////////////////////////////////////////////////////////////
 
 	var tabContainer	= new UI.TabsHelper.createTabContainer('sceneSidebar', 0)
+
+
 	document.querySelector( '#leftSidebar' ).appendChild(tabContainer.dom)
 	document.querySelector( '#leftSidebar' ).style.padding = '0px'
 	tabContainer.dom.style.padding = '0px'
 
+	//console.log( '++ Removing Object ' + type + ' (' + object.uuid + ') (parent ' + ( parent?parent.uuid:'' ) + ')' );
+
+
+		chrome.runtime.sendMessage({
+			type:'log',
+			msg:'dddddddddddddddddddddddddddddddddddddddddddddd'
+
+		});
 
 	var sceneTab	= new UI.TabsHelper.createTab()
 	tabContainer.addTab('SCENE', sceneTab)
@@ -100,5 +110,5 @@ InspectDevTools.initAllUI	= function(){
 	//////////////////////////////////////////////////////////////////////////////////
 
 	InspectDevTools.initLeftSideBar()
-	InspectDevTools.initRightSideBar()	
+	InspectDevTools.initRightSideBar()
 }
